@@ -1,0 +1,11 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+create-canvas:
+  path: /create-canvas
+  controller: App\Controller\IndexController::getCreateCanvas
+
+move:
+  path: /move/{canvasName}/{movementDirection}
+  controller: App\Controller\IndexController::getMove
