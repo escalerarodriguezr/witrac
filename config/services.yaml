@@ -33,3 +33,12 @@ services:
     Witrac\Infrastructure\Ui\Http\Listener\Shared\JsonTransformerExceptionListener:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException, priority: 100 }
+
+
+
+    #Domain
+    #Command Bus
+    _instanceof:
+        Witrac\Domain\Shared\Bus\Command\CommandHandler:
+            tags:
+                - { name: messenger.message_handler, bus: command.bus }
