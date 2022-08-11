@@ -17,6 +17,13 @@ doctrine:
                 prefix: 'Witrac\Domain\Spaceship\Model\Entity'
                 alias: Witrac\Domain\Spaceship\Model\Entity
 
+            Witrac\Canvas:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Infrastructure/Persistence/Doctrine/Mapping/Canvas'
+                prefix: 'Witrac\Domain\Canvas\Model\Entity'
+                alias: Witrac\Domain\Canvas\Model\Entity
+
 when@test:
     doctrine:
         dbal:
