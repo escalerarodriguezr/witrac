@@ -18,14 +18,14 @@ class Canvas
         string $name,
         int $width,
         int $height,
-        string $spaceshipUuid
+        Spaceship $spaceship
     )
     {
         $this->id = $id;
         $this->name = $name;
         $this->width = $width;
         $this->height = $height;
-        $this->spaceship = new Spaceship($spaceshipUuid,0,0);
+        $this->spaceship = $spaceship;
     }
 
     public function id(): string
