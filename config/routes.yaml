@@ -3,9 +3,16 @@
 #    controller: App\Controller\DefaultController::index
 
 create-canvas:
-  path: /create-canvas
+  path: /create-canvas-legacy
   controller: App\Controller\IndexController::getCreateCanvas
 
 move:
   path: /move/{canvasName}/{movementDirection}
   controller: App\Controller\IndexController::getMove
+
+
+#CANVAS ENDPOINTS
+canvas-create:
+  path: create-canvas
+  controller: App\Controller\Canvas\CreateCanvasController
+  methods: [POST]
