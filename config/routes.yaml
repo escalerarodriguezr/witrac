@@ -15,4 +15,4 @@ move:
 canvas-create:
   path: create-canvas
   controller: App\Controller\Canvas\CreateCanvasController
-  methods: [POST]
+  methods: [GET]

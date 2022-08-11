@@ -10,32 +10,32 @@ use Witrac\Infrastructure\Ui\Http\Request\RequestDTO;
 class CreateCanvasRequest implements RequestDTO
 {
     /**
-     * @Assert\NotBlank(message = "Missing request parameter 'name'")
+     * @Assert\NotBlank(message = "Missing or invalid request parameter 'name'.")
 
      * @Assert\Type(
      *     type="string",
-     *     message = "Invalid value of request parameter 'name'"
+     *     message = "Invalid value of request parameter 'name'."
      * )
      */
     private $name;
 
 
     /**
-     * @Assert\NotBlank(message = "Missing request parameter 'width'")
+     * @Assert\NotBlank(message = "Missing or invalid request parameter 'width'.")
 
      * @Assert\Type(
      *     type="integer",
-     *     message = "Invalid value of request parameter 'width'"
+     *     message = "Missing or invalid value of request parameter 'width'."
      * )
      */
     private $width;
 
     /**
-     * @Assert\NotBlank(message = "Missing request parameter 'height'")
+     * @Assert\NotBlank(message = "Missing or invalid request parameter 'height'.")
 
      * @Assert\Type(
      *     type="integer",
-     *     message = "Invalid value of request parameter 'height'"
+     *     message = "Missing or invalid value of request parameter 'height'."
      * )
      */
     private $height;
@@ -43,11 +43,10 @@ class CreateCanvasRequest implements RequestDTO
 
     public function __construct(Request $request)
     {
-        $data = \json_decode($request->getContent(), true);
 
-        $this->name = $data['name'] ?? null;
-        $this->width = $data['width'] ?? null;
-        $this->height = $data['height'] ?? null;
+        $this->name = $request->query->get('name');
+        $this->width = is_numeric($request->query->get('width')) ? (int) $request->query->get('width') : null;
+        $this->height = is_numeric($request->query->get('height')) ? (int) $request->query->get('height') : null;
     }
 
 
