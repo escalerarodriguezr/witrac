@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS witrac_test;
+GRANT ALL PRIVILEGES ON witrac_test.* TO 'root' IDENTIFIED BY 'root';
