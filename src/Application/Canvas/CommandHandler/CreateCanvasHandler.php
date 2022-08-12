@@ -13,8 +13,7 @@ use Witrac\Domain\Spaceship\Repository\SpaceShipRepository;
 
 class CreateCanvasHandler implements CommandHandler
 {
-
-
+    
     public function __construct(
         private IdentifierGenerator $identifierGenerator,
         private SpaceShipRepository $spaceShipRepository,
@@ -46,6 +45,5 @@ class CreateCanvasHandler implements CommandHandler
         $this->canvasRepository->save($canvas);
 
     }
-
 
 }
