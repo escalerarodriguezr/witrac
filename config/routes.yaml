@@ -32,3 +32,8 @@ move-right:
   path: move/{canvasName}/right
   controller: App\Controller\Spaceship\SpaceshipMoveRightController
   methods: [GET]
+
+move-left:
+  path: move/{canvasName}/left
+  controller: App\Controller\Spaceship\SpaceshipMoveLeftController
+  methods: [GET]
