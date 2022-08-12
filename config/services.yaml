@@ -37,8 +37,11 @@ services:
 
 
     #Domain
-    #Command Bus
+    #Bus
     _instanceof:
         Witrac\Domain\Shared\Bus\Command\CommandHandler:
             tags:
                 - { name: messenger.message_handler, bus: command.bus }
+        Witrac\Domain\Shared\Bus\Query\QueryHandler:
+            tags:
+                - { name: messenger.message_handler, bus: query.bus }
