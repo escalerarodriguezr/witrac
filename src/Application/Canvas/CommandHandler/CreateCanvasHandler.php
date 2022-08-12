@@ -25,6 +25,9 @@ class CreateCanvasHandler implements CommandHandler
 
     public function __invoke(CreateCanvas $createCanvas): void
     {
+
+        $this->canvasRepository->deleteByName($createCanvas->name());
+
         $spaceShip = new Spaceship(
             $this->identifierGenerator->uuid(),
             0,

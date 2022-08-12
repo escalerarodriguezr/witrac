@@ -43,9 +43,6 @@ class CreateCanvasController
             'canvas' => $canvasView->toArray()
         ], Response::HTTP_CREATED);
 
-
-
     }
-
 
 }
