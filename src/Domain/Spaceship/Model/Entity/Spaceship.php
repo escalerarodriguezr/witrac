@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Witrac\Domain\Spaceship\Model\Entity;
 
+use Witrac\Domain\Canvas\Model\Entity\Canvas;
+
 class Spaceship
 {
     private string $id;
@@ -32,5 +34,12 @@ class Spaceship
         return $this->positionY;
     }
 
+    public function moveUpIntoCanvas(Canvas $canvas): void
+    {
+        --$this->positionY;
+        if( $this->positionY < 0 ){
+            $this->positionY = $canvas->height();
+        }
+    }
 
 }

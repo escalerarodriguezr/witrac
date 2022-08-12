@@ -14,13 +14,12 @@ use Witrac\Infrastructure\Ui\Http\Request\DTO\CreateCanvasRequest;
 class CreateCanvasController
 {
 
-
     public function __construct(
         private CommandBus $commandBus,
         private QueryBus $queryBus
     )
     {
-        $this->commandBus = $commandBus;
+
     }
 
     public function __invoke(CreateCanvasRequest $request):Response

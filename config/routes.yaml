@@ -7,7 +7,7 @@ create-canvas:
   controller: App\Controller\IndexController::getCreateCanvas
 
 move:
-  path: /move/{canvasName}/{movementDirection}
+  path: /move-legacy/{canvasName}/{movementDirection}
   controller: App\Controller\IndexController::getMove
 
 
@@ -15,4 +15,9 @@ move:
 canvas-create:
   path: create-canvas
   controller: App\Controller\Canvas\CreateCanvasController
+  methods: [GET]
+
+move-top:
+  path: move/{canvasName}/top
+  controller: App\Controller\Spaceship\SpaceshipMoveTopController
   methods: [GET]
