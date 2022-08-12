@@ -53,5 +53,4 @@ class Canvas
         return $this->spaceship;
     }
 
-
 }

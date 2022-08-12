@@ -3,6 +3,7 @@
 namespace Witrac\Infrastructure\Persistence\Doctrine\Repository\Canvas;
 
 use Witrac\Domain\Canvas\Model\Entity\Canvas;
+use Witrac\Domain\Canvas\Model\Exception\CanvasNotFoundException;
 use Witrac\Domain\Canvas\Repository\CanvasRepository;
 use Witrac\Infrastructure\Persistence\Doctrine\Repository\MysqlDoctrineBaseRepository;
 
@@ -33,6 +34,15 @@ class DoctrineCanvasRepository extends MysqlDoctrineBaseRepository implements Ca
         if($canvas){
             $this->removeEntity($canvas);
         }
+    }
+
+    public function findByNameOrFail(string $name): Canvas
+    {
+        if (null === $canvas = $this->objectRepository->findOneBy(['name' => $name])) {
+            CanvasNotFoundException::fromName($name);
+        }
+
+        return $canvas;
     }
 
 }
