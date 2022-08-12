@@ -13,6 +13,9 @@ use Witrac\Infrastructure\Ui\Http\Request\DTO\CreateCanvasRequest;
 
 class CreateCanvasController
 {
+    const KEY_RESPONSE_STATUS = 'status';
+    const RESPONSE_STATUS_CREATED = 'created';
+    const KEY_RESPONSE_CANVAS = 'canvas';
 
     public function __construct(
         private CommandBus $commandBus,
@@ -38,8 +41,8 @@ class CreateCanvasController
         );
 
         return new JsonResponse([
-            'status' => 'created',
-            'canvas' => $canvasView->toArray()
+            self::KEY_RESPONSE_STATUS => self::RESPONSE_STATUS_CREATED,
+            self::KEY_RESPONSE_CANVAS => $canvasView->toArray()
         ], Response::HTTP_CREATED);
 
     }
