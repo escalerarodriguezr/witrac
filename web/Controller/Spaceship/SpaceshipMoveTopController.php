@@ -12,7 +12,7 @@ use Witrac\Domain\Shared\Bus\Query\QueryBus;
 
 class SpaceshipMoveTopController
 {
-    
+
     public function __construct(
         private CommandBus $commandBus,
         private QueryBus $queryBus
