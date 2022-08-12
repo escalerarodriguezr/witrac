@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Witrac\Application\Spaceship\CommandHandler;
 
-use Witrac\Application\Spaceship\Command\SpaceshipMoveBottom;
+use Witrac\Application\Spaceship\Command\SpaceshipMoveRight;
 use Witrac\Domain\Canvas\Repository\CanvasRepository;
 use Witrac\Domain\Shared\Bus\Command\CommandHandler;
 use Witrac\Domain\Spaceship\Repository\SpaceShipRepository;
 
-class SpaceshipMoveBottomHandler implements CommandHandler
+class SpaceshipMoveRightHandler implements CommandHandler
 {
     public function __construct(
         private CanvasRepository $canvasRepository,
@@ -17,11 +17,11 @@ class SpaceshipMoveBottomHandler implements CommandHandler
     {
     }
 
-    public function __invoke(SpaceshipMoveBottom $spaceshipMoveBottom): void
+    public function __invoke(SpaceshipMoveRight $spaceshipMoveRight): void
     {
-        $canvas = $this->canvasRepository->findByNameOrFail($spaceshipMoveBottom->canvasName());
+        $canvas = $this->canvasRepository->findByNameOrFail($spaceshipMoveRight->canvasName());
         $spaceship = $canvas->spaceship();
-        $spaceship->moveBottomIntoCanvas($canvas);
+        $spaceship->moveRightIntoCanvas($canvas);
         $this->spaceShipRepository->save($spaceship);
     }
 
