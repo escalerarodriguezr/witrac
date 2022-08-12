@@ -2,8 +2,15 @@
 
 namespace Witrac\Application\Canvas\QueryHandler\GetCanvasByNameQueryHandler;
 
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service_locator;
+
 class GetCanvasByNameQueryView
 {
+    const KEY_NAME = 'name';
+    const KEY_WIDTH = 'width';
+    const KEY_HEIGHT = 'height';
+    const KEY_SPACESHIP = 'spaceship';
+
     public function __construct(
         private string $name,
         private int $width,
@@ -37,10 +44,10 @@ class GetCanvasByNameQueryView
     public function toArray(): array
     {
         return [
-            'name' => $this->name,
-            'width' => $this->width,
-            'height' => $this->heigt,
-            'spaceship' => $this->spaceshipView->toArray()
+            self::KEY_NAME=> $this->name,
+            self::KEY_WIDTH => $this->width,
+            self::KEY_HEIGHT => $this->heigt,
+            self::KEY_SPACESHIP => $this->spaceshipView->toArray()
         ];
     }
 }

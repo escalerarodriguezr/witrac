@@ -9,6 +9,10 @@ use Witrac\Infrastructure\Ui\Http\Request\RequestDTO;
 
 class CreateCanvasRequest implements RequestDTO
 {
+    const NAME_PARAM = 'name';
+    const WIDTH_PARAM = 'width';
+    const HEIGHT_PARAM = 'height';
+
     /**
      * @Assert\NotBlank(message = "Missing or invalid request parameter 'name'.")
 

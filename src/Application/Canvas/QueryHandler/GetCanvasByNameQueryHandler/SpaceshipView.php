@@ -4,6 +4,8 @@ namespace Witrac\Application\Canvas\QueryHandler\GetCanvasByNameQueryHandler;
 
 class SpaceshipView
 {
+    const KEY_X = 'x';
+    const KEY_Y = 'y';
 
     public function __construct(
         private int $x,
@@ -25,8 +27,8 @@ class SpaceshipView
     public function toArray(): array
     {
         return [
-            'x' => $this->x,
-            'y' => $this->y
+            self::KEY_X => $this->x,
+            self::KEY_Y => $this->y
         ];
     }
 
