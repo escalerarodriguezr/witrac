@@ -27,4 +27,12 @@ class DoctrineCanvasRepository extends MysqlDoctrineBaseRepository implements Ca
         return $canvas;
     }
 
+    public function deleteByName(string $name): void
+    {
+        $canvas = $this->findByName($name);
+        if($canvas){
+            $this->removeEntity($canvas);
+        }
+    }
+
 }

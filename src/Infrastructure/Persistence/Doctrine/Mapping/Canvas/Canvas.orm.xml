@@ -7,7 +7,7 @@
         <field name="width" type="integer"/>
         <field name="height" type="integer"/>
 
-        <one-to-one field="spaceship" target-entity="Witrac\Domain\Spaceship\Model\Entity\Spaceship">
+        <one-to-one field="spaceship" target-entity="Witrac\Domain\Spaceship\Model\Entity\Spaceship" orphan-removal="true" >
             <join-column name="spaceship_id" referenced-column-name="id" />
         </one-to-one>
 
