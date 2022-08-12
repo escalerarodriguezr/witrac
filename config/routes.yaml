@@ -17,7 +17,13 @@ canvas-create:
   controller: App\Controller\Canvas\CreateCanvasController
   methods: [GET]
 
+#SPACESHIP MOVE ENDPOINTS
 move-top:
   path: move/{canvasName}/top
   controller: App\Controller\Spaceship\SpaceshipMoveTopController
+  methods: [GET]
+
+move-bottom:
+  path: move/{canvasName}/bottom
+  controller: App\Controller\Spaceship\SpaceshipMoveBottomController
   methods: [GET]
