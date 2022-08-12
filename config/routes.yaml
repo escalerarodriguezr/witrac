@@ -27,3 +27,8 @@ move-bottom:
   path: move/{canvasName}/bottom
   controller: App\Controller\Spaceship\SpaceshipMoveBottomController
   methods: [GET]
+
+move-right:
+  path: move/{canvasName}/right
+  controller: App\Controller\Spaceship\SpaceshipMoveRightController
+  methods: [GET]

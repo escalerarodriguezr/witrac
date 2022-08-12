@@ -50,4 +50,12 @@ class Spaceship
         }
     }
 
+    public function moveRightIntoCanvas(Canvas $canvas): void
+    {
+        ++$this->positionX;
+        if( $this->positionX > $canvas->width() ){
+            $this->positionX = 0;
+        }
+    }
+
 }
