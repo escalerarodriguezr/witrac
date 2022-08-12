@@ -13,6 +13,7 @@ use Witrac\Infrastructure\Ui\Http\Request\DTO\CreateCanvasRequest;
 class CreateCanvasActionTest extends AcceptanceTestBase
 {
     private const ENDPOINT = '/create-canvas';
+    const CREATED_CANVAS_NAME = 'canvas_name';
 
     public function setUp():void
     {

@@ -12,6 +12,9 @@ use Witrac\Domain\Shared\Bus\Query\QueryBus;
 
 class SpaceshipMoveTopController
 {
+    const KEY_RESPONSE_STATUS = 'status';
+    const RESPONSE_STATUS_MOVED = 'moved';
+    const KEY_RESPONSE_CANVAS = 'canvas';
 
     public function __construct(
         private CommandBus $commandBus,
@@ -28,8 +31,8 @@ class SpaceshipMoveTopController
         );
 
         return new JsonResponse([
-            'status' => 'moved',
-            'canvas' => $canvasView->toArray()
+            self::KEY_RESPONSE_STATUS => self::RESPONSE_STATUS_MOVED,
+            self::KEY_RESPONSE_CANVAS => $canvasView->toArray()
         ], Response::HTTP_OK);
 
     }
