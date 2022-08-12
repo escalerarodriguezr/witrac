@@ -42,4 +42,12 @@ class Spaceship
         }
     }
 
+    public function moveBottomIntoCanvas(Canvas $canvas): void
+    {
+        ++$this->positionY;
+        if( $this->positionY > $canvas->height() ){
+            $this->positionY = 0;
+        }
+    }
+
 }
