@@ -17,11 +17,11 @@ class GetCanvasByNameQueryView
     const BLOCK_Y = 'y';
 
     public function __construct(
-        private string $name,
-        private int $width,
-        private int $heigt,
+        private string        $name,
+        private int           $width,
+        private int           $height,
         private SpaceshipView $spaceshipView,
-        private Collection $blocks
+        private Collection    $blocks
 
     )
     {
@@ -37,9 +37,9 @@ class GetCanvasByNameQueryView
         return $this->width;
     }
 
-    public function heigt(): int
+    public function height(): int
     {
-        return $this->heigt;
+        return $this->height;
     }
 
     public function spaceshipView(): SpaceshipView
@@ -71,7 +71,7 @@ class GetCanvasByNameQueryView
         return [
             self::KEY_NAME=> $this->name,
             self::KEY_WIDTH => $this->width,
-            self::KEY_HEIGHT => $this->heigt,
+            self::KEY_HEIGHT => $this->height,
             self::KEY_SPACESHIP => $this->spaceshipView->toArray(),
             self::KEY_BLOCKS => $this->transformBlocks(),
         ];
