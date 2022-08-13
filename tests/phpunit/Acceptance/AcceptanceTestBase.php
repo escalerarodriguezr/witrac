@@ -11,7 +11,6 @@ class AcceptanceTestBase extends WebTestCase
     public function setUp():void
     {
         parent::setUp();
-
     }
 
     protected function getBaseClient(): KernelBrowser
