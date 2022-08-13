@@ -50,6 +50,9 @@ class CreateCanvasActionTest extends AcceptanceTestBase
         self::assertEquals($spaceship[SpaceshipView::KEY_X],0);
         self::assertEquals($spaceship[SpaceshipView::KEY_Y],0);
 
+        self::assertArrayHasKey(GetCanvasByNameQueryView::KEY_BLOCKS,$canvas);
+        $blocks = $canvas[GetCanvasByNameQueryView::KEY_BLOCKS];
+        self::assertCount(0,$blocks);
 
     }
 
@@ -126,6 +129,32 @@ class CreateCanvasActionTest extends AcceptanceTestBase
         $httpClient->request(Request::METHOD_GET, self::ENDPOINT, $queryParams);
         $response = $httpClient->getResponse();
         self::assertEquals(Response::HTTP_BAD_REQUEST,$response->getStatusCode());
+    }
+
+    public function testCreateCanvasAddTwoBlocks()
+    {
+        $httpClient = $this->getBaseClient();
+        $queryParams = [
+            CreateCanvasRequest::NAME_PARAM => "canvas_name",
+            CreateCanvasRequest::WIDTH_PARAM => 50,
+            CreateCanvasRequest::HEIGHT_PARAM => 50,
+            CreateCanvasRequest::BLOCKS_PARAMS => 2
+        ];
+
+        $httpClient->request(Request::METHOD_GET, self::ENDPOINT, $queryParams);
+        $response = $httpClient->getResponse();
+
+        self::assertEquals(Response::HTTP_CREATED,$response->getStatusCode());
+        $responseData = \json_decode($response->getContent(),true);
+
+        $canvas = $responseData[CreateCanvasController::KEY_RESPONSE_CANVAS];
+        self::assertArrayHasKey(GetCanvasByNameQueryView::KEY_BLOCKS,$canvas);
+
+        $blocks = $canvas[GetCanvasByNameQueryView::KEY_BLOCKS];
+        self::assertCount(2,$blocks);
+        self::assertArrayHasKey(GetCanvasByNameQueryView::BLOCK_X,$blocks[0]);
+        self::assertArrayHasKey(GetCanvasByNameQueryView::BLOCK_Y,$blocks[0]);
+
     }
 
 }

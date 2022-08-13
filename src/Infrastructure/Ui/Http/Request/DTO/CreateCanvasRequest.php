@@ -12,6 +12,7 @@ class CreateCanvasRequest implements RequestDTO
     const NAME_PARAM = 'name';
     const WIDTH_PARAM = 'width';
     const HEIGHT_PARAM = 'height';
+    const BLOCKS_PARAMS = 'numberOfRandomBlocks';
 
     /**
      * @Assert\NotBlank(message = "Missing or invalid request parameter 'name'.")
@@ -44,6 +45,14 @@ class CreateCanvasRequest implements RequestDTO
      */
     private $height;
 
+    /**
+     * @Assert\Type(
+     *     type="integer",
+     *     message = "Invalid value of request parameter 'numberOfRandomBlocks'."
+     * )
+     */
+    private $numberOfRandomBlocks;
+
 
     public function __construct(Request $request)
     {
@@ -51,6 +60,7 @@ class CreateCanvasRequest implements RequestDTO
         $this->name = $request->query->get('name');
         $this->width = is_numeric($request->query->get('width')) ? (int) $request->query->get('width') : null;
         $this->height = is_numeric($request->query->get('height')) ? (int) $request->query->get('height') : null;
+        $this->numberOfRandomBlocks = is_numeric($request->query->get(self::BLOCKS_PARAMS)) ? (int) $request->query->get(self::BLOCKS_PARAMS) : 0;
     }
 
 
@@ -70,6 +80,10 @@ class CreateCanvasRequest implements RequestDTO
         return $this->height;
     }
 
+    public function getNumberOfRandomBlocks(): int
+    {
+        return $this->numberOfRandomBlocks;
+    }
 
 }
 

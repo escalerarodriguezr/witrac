@@ -30,7 +30,8 @@ class GetCanvasByNameQueryHandler implements QueryHandler
             new SpaceshipView(
                 $canvas->spaceship()->positionX(),
                 $canvas->spaceship()->positionY()
-            )
+            ),
+            $canvas->blocks()
         );
     }
 

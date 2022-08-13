@@ -42,6 +42,7 @@ class CreateCanvasHandler implements CommandHandler
             $spaceShip
         );
 
+        $canvas->addRandomBlocks($createCanvas->numberOfRandomBlocks(), $this->identifierGenerator);
         $this->canvasRepository->save($canvas);
 
     }
