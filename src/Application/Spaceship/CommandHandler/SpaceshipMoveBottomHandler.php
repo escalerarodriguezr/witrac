@@ -22,6 +22,7 @@ class SpaceshipMoveBottomHandler implements CommandHandler
         $canvas = $this->canvasRepository->findByNameOrFail($spaceshipMoveBottom->canvasName());
         $spaceship = $canvas->spaceship();
         $spaceship->moveBottomIntoCanvas($canvas);
+        $canvas->checkSpaceshipCollision($spaceship);
         $this->spaceShipRepository->save($spaceship);
     }
 
