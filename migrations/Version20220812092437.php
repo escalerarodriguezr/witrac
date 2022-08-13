@@ -14,7 +14,7 @@ final class Version20220812092437 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Create ´canvas´ and ´spaceship´ ';
     }
 
     public function up(Schema $schema): void

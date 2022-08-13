@@ -45,7 +45,8 @@ class CreateCanvasHandlerTest extends TestCase
         $createCanvas = new CreateCanvas(
             "canvas_name",
             20,
-            20
+            20,
+            0
         );
 
         $this->canvasRepository->expects($this->exactly(1))
@@ -53,6 +54,34 @@ class CreateCanvasHandlerTest extends TestCase
             ->with($createCanvas->name());
 
         $this->identifierGenerator->expects($this->exactly(2))
+            ->method('uuid');
+
+        $this->spaceShipRepository->expects($this->exactly(1))
+            ->method('save')
+            ->with($this->isInstanceOf(Spaceship::class));
+
+        $this->canvasRepository->expects($this->exactly(1))
+            ->method('save')
+            ->with($this->isInstanceOf(Canvas::class));
+
+        $this->createCanvasHandler->__invoke($createCanvas);
+    }
+
+    public function testCreateCanvasWithTwoBlocksHandlerInvoke()
+    {
+        $createCanvas = new CreateCanvas(
+            "canvas_name",
+            20,
+            20,
+            2
+        );
+
+        $this->canvasRepository->expects($this->exactly(1))
+            ->method('deleteByName')
+            ->with($createCanvas->name());
+
+        //expected to call twice more to the indentifierGenerator->uuid() one more for each block
+        $this->identifierGenerator->expects($this->exactly(4))
             ->method('uuid');
 
         $this->spaceShipRepository->expects($this->exactly(1))

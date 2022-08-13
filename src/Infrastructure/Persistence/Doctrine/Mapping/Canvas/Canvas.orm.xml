@@ -11,6 +11,13 @@
             <join-column name="spaceship_id" referenced-column-name="id" />
         </one-to-one>
 
+        <one-to-many field="blocks" target-entity="Witrac\Domain\Canvas\Model\Entity\Block" mapped-by="canvas">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
+
         <indexes>
             <index name="IDX_name" columns="name"/>
         </indexes>

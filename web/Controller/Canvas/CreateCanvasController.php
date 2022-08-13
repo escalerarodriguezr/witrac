@@ -27,12 +27,12 @@ class CreateCanvasController
 
     public function __invoke(CreateCanvasRequest $request):Response
     {
-
         $this->commandBus->dispatch(
             new CreateCanvas(
                 $request->getName(),
                 $request->getWidth(),
                 $request->getHeight(),
+                $request->getNumberOfRandomBlocks()
             )
         );
 

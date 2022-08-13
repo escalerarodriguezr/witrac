@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Witrac\Domain\Canvas\Model\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Witrac\Domain\Shared\Service\IdentifierGenerator\IdentifierGenerator;
 use Witrac\Domain\Spaceship\Model\Entity\Spaceship;
 
 class Canvas
@@ -12,6 +15,7 @@ class Canvas
     private int $width;
     private int $height;
     private Spaceship $spaceship;
+    private Collection $blocks;
 
     public function __construct(
         string $id,
@@ -26,6 +30,7 @@ class Canvas
         $this->width = $width;
         $this->height = $height;
         $this->spaceship = $spaceship;
+        $this->blocks = new ArrayCollection();
     }
 
     public function id(): string
@@ -51,6 +56,29 @@ class Canvas
     public function spaceship(): Spaceship
     {
         return $this->spaceship;
+    }
+
+
+    public function blocks(): Collection
+    {
+        return $this->blocks;
+    }
+
+    public function addRandomBlocks(int $numberOfBlocks, IdentifierGenerator $identifierGenerator):void
+    {
+        if($numberOfBlocks){
+             for ($i=0; $i<$numberOfBlocks; $i++){
+                $this->blocks->add(
+                    new Block(
+                        $identifierGenerator->uuid(),
+                        rand(0,$this->width),
+                        rand(0,$this->height),
+                        $this
+                    )
+                );
+             }
+        }
+
     }
 
 }
