@@ -46,7 +46,7 @@ La respuesta sería del tipo:
         ]
     }
 }
-``
+```
 Por ejemplo, hacemos un mapa llamado "first_canvas" de "5x5":
 
 ```text
