@@ -5,6 +5,7 @@ namespace Witrac\Domain\Canvas\Model\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Witrac\Domain\Canvas\Model\Exception\SpaceshipCollisionException;
 use Witrac\Domain\Shared\Service\IdentifierGenerator\IdentifierGenerator;
 use Witrac\Domain\Spaceship\Model\Entity\Spaceship;
 
@@ -71,12 +72,24 @@ class Canvas
                 $this->blocks->add(
                     new Block(
                         $identifierGenerator->uuid(),
-                        rand(0,$this->width),
-                        rand(0,$this->height),
+                        rand(1,$this->width),
+                        rand(1,$this->height),
                         $this
                     )
                 );
              }
+        }
+
+    }
+
+    public function checkSpaceshipCollision(Spaceship $spaceship): void
+    {
+        if( $this->blocks()->count() ){
+            foreach ($this->blocks() as $block){
+                if( $block->positionX() == $spaceship->positionX() && $block->positionY() == $spaceship->positionY() ){
+                    SpaceshipCollisionException::whithBlock($block);
+                }
+            }
         }
 
     }

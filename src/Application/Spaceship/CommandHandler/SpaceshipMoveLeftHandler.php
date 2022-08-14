@@ -22,6 +22,7 @@ class SpaceshipMoveLeftHandler implements CommandHandler
         $canvas = $this->canvasRepository->findByNameOrFail($spaceshipMoveLeft->canvasName());
         $spaceship = $canvas->spaceship();
         $spaceship->moveLeftIntoCanvas($canvas);
+        $canvas->checkSpaceshipCollision($spaceship);
         $this->spaceShipRepository->save($spaceship);
     }
 

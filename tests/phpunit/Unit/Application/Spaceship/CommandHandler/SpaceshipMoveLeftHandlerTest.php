@@ -31,7 +31,6 @@ class SpaceshipMoveLeftHandlerTest extends TestCase
             ->getMock();
         $this->canvas = $this->getMockBuilder(Canvas::class)
             ->disableOriginalConstructor()
-            ->onlyMethods(['spaceship'])
             ->getMock();
         $this->spaceship = $this->getMockBuilder(Spaceship::class)
             ->disableOriginalConstructor()
@@ -57,6 +56,10 @@ class SpaceshipMoveLeftHandlerTest extends TestCase
         $this->canvas->expects($this->exactly(1))
             ->method('spaceship')
             ->willReturn($this->spaceship);
+
+        $this->canvas->expects($this->exactly(1))
+            ->method('checkSpaceshipCollision')
+            ->with($this->spaceship);
 
         $this->spaceship->expects($this->exactly(1))
             ->method('moveLeftIntoCanvas')

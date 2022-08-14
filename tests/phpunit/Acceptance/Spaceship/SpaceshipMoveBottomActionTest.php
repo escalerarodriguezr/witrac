@@ -8,10 +8,14 @@ use PHPUnit\Tests\Acceptance\Canvas\CreateCanvasActionTest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Witrac\Application\Canvas\QueryHandler\GetCanvasByNameQueryHandler\GetCanvasByNameQueryView;
+use Witrac\Infrastructure\Ui\Http\Listener\Shared\JsonTransformerExceptionListener;
+use Witrac\Infrastructure\Ui\Http\Request\DTO\CreateCanvasRequest;
 
 class SpaceshipMoveBottomActionTest extends AcceptanceTestBase
 {
     private const ENDPOINT = '/move/%s/bottom';
+    private const CREATE_CANVAS_ENDPOINT = '/create-canvas';
+    private const MOVE_RIGHT_ENDPOINT = '/move/%s/right';
 
     public function setUp():void
     {
@@ -55,5 +59,44 @@ class SpaceshipMoveBottomActionTest extends AcceptanceTestBase
         self::assertEquals(Response::HTTP_NOT_FOUND,$response->getStatusCode());
     }
 
+    public function testMoveBottomCollisionResponse()
+    {
+        $httpClient = $this->getBaseClient();
+        $queryParams = [
+            CreateCanvasRequest::NAME_PARAM => "canvas_name",
+            CreateCanvasRequest::WIDTH_PARAM => 1,
+            CreateCanvasRequest::HEIGHT_PARAM => 1,
+            CreateCanvasRequest::BLOCKS_PARAMS => 1
+        ];
+
+        $httpClient->request(Request::METHOD_GET, self::CREATE_CANVAS_ENDPOINT, $queryParams);
+        $httpClient->getResponse();
+
+        $httpClient->request(Request::METHOD_GET,
+            sprintf(self::MOVE_RIGHT_ENDPOINT,CreateCanvasActionTest::CREATED_CANVAS_NAME)
+        );
+        $httpClient->getResponse();
+
+
+        $httpClient->request(Request::METHOD_GET,
+            sprintf(self::ENDPOINT,CreateCanvasActionTest::CREATED_CANVAS_NAME)
+        );
+
+        $response = $httpClient->getResponse();
+        self::assertEquals(Response::HTTP_CONFLICT,$response->getStatusCode());
+
+        $responseData = \json_decode($response->getContent(),true);
+        self::assertArrayHasKey(JsonTransformerExceptionListener::ERRORS_KEY, $responseData);
+
+        $queryParams = [
+            CreateCanvasRequest::NAME_PARAM => "canvas_name",
+            CreateCanvasRequest::WIDTH_PARAM => 50,
+            CreateCanvasRequest::HEIGHT_PARAM => 50
+        ];
+
+        $httpClient->request(Request::METHOD_GET, self::CREATE_CANVAS_ENDPOINT, $queryParams);
+        $httpClient->getResponse();
+
+    }
 
 }
