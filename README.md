@@ -76,7 +76,7 @@ peculiaridad que si la nave llega a uno de los límites, ésta ha de aparecer po
 ```
 Si nos encontramos en la posición "1,4" y nos movemos 1 posición a la derecha, apareceríamos en la "1,0"
 
-En caso de colisionar contra un obstáculo no es posible avanzar y se responde un error con un 409 Conflict del tipo
+En caso de colisionar contra un obstáculo no es posible avanzar y se responde un error con un "409 Conflict" del tipo:
 
 ```text
 {
