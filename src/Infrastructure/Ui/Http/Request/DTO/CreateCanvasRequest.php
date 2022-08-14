@@ -57,9 +57,9 @@ class CreateCanvasRequest implements RequestDTO
     public function __construct(Request $request)
     {
 
-        $this->name = $request->query->get('name');
-        $this->width = is_numeric($request->query->get('width')) ? (int) $request->query->get('width') : null;
-        $this->height = is_numeric($request->query->get('height')) ? (int) $request->query->get('height') : null;
+        $this->name = $request->query->get(self::NAME_PARAM);
+        $this->width = is_numeric($request->query->get(self::WIDTH_PARAM)) ? (int) $request->query->get(self::WIDTH_PARAM) : null;
+        $this->height = is_numeric($request->query->get(self::HEIGHT_PARAM)) ? (int) $request->query->get(self::HEIGHT_PARAM) : null;
         $this->numberOfRandomBlocks = is_numeric($request->query->get(self::BLOCKS_PARAMS)) ? (int) $request->query->get(self::BLOCKS_PARAMS) : 0;
     }
 

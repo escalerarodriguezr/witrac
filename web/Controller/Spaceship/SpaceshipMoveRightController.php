@@ -6,9 +6,7 @@ namespace App\Controller\Spaceship;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Witrac\Application\Canvas\Query\GetCanvasByName;
-use Witrac\Application\Spaceship\Command\SpaceshipMoveBottom;
 use Witrac\Application\Spaceship\Command\SpaceshipMoveRight;
-use Witrac\Application\Spaceship\Command\SpaceshipMoveUp;
 use Witrac\Domain\Shared\Bus\Command\CommandBus;
 use Witrac\Domain\Shared\Bus\Query\QueryBus;
 

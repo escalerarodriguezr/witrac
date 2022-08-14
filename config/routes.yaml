@@ -1,16 +1,3 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
-
-create-canvas:
-  path: /create-canvas-legacy
-  controller: App\Controller\IndexController::getCreateCanvas
-
-move:
-  path: /move-legacy/{canvasName}/{movementDirection}
-  controller: App\Controller\IndexController::getMove
-
-
 #CANVAS ENDPOINTS
 canvas-create:
   path: create-canvas

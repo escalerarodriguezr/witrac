@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Witrac\Infrastructure\Ui\Http\Listener\Shared;
 
-use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
